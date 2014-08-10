@@ -1,3 +1,7 @@
 1.0.1:
     - First version of Parallax
     - 2014_08_010_000001_Db_create_parallaxes_table.php
+1.0.2:
+    - Code cleanup
+    - Removed bug when loading a missing parallax.
+    - Removed bug when adding a parallax with a slide as the current page.

@@ -42,12 +42,16 @@ class Parallaxes extends Model
     use \October\Rain\Database\Traits\Validation;
 
     /**
-     * @var string The database table used by the model.
+     * The database table used by the model.
+     *
+     * @var string
      */
     public $table = 'freestream_parallax_parallaxes';
 
     /**
-     * @var array Guarded fields
+     * Guarded fields.
+     *
+     * @var array
      */
     protected $guarded = ['*'];
 
@@ -78,13 +82,22 @@ class Parallaxes extends Model
     /**
      * Returns an array collection of all parallax pages.
      *
-     * @param  integer $parallaxId
+     * @param  integer       $parallaxId
+     * @param  array|string  $skipPages
      *
      * @return array
      */
-    public function getPageCollection($parallaxId)
+    public function getPageCollection($parallaxId, $skipPages = [])
     {
+        if (!is_array($skipPages)) {
+            $skipPages = [$skipPages];
+        }
+
         $parallax = Parallaxes::find($parallaxId);
+
+        if (!$parallax || !$parallax->pages) {
+            return [];
+        }
 
         $pages = json_decode($parallax->pages, true);
 
@@ -95,7 +108,7 @@ class Parallaxes extends Model
         $collection = [];
 
         foreach ($pages as $parent) {
-            if ($this->_isPageHidden($parent['pagename'])) {
+            if (in_array($parent['pagename'], $skipPages) || $this->_isPageHidden($parent['pagename'])) {
                 continue;
             }
 
@@ -109,7 +122,7 @@ class Parallaxes extends Model
 
             if (is_array($parent['children'])) {
                 foreach ($parent['children'] as $child) {
-                    if ($this->_isPageHidden($child['pagename'])) {
+                    if (in_array($child['pagename'], $skipPages) || $this->_isPageHidden($child['pagename'])) {
                         continue;
                     }
 

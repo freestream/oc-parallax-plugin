@@ -31,6 +31,13 @@ use Freestream\Parallax\Models\Parallaxes;
 class Parallax extends ComponentBase
 {
     /**
+     * Page Collection array;
+     *
+     * @var array
+     */
+    protected $_pageCollection = [];
+
+    /**
      * Component Description.
      *
      * @return array
@@ -272,33 +279,29 @@ class Parallax extends ComponentBase
     public function onRender()
     {
         $model = new Parallaxes;
-        $this->page['pages'] = $model->getPageCollection($this->property('parallax'));
+        $this->page['pages'] = $this->_getPageCollection();
 
-        $this->page['verticalCentered']                     = $this->property('verticalCentered');
-        $this->page['resize']                               = $this->property('resize');
-        $this->page['scrollingSpeed']                       = $this->property('scrollingSpeed');
-        $this->page['menu']                                 = $this->property('menu');
-        $this->page['autoScrolling']                        = $this->property('autoScrolling');
-        $this->page['scrollOverflow']                       = $this->property('scrollOverflow');
-        $this->page['css3']                                 = $this->property('css3');
-        $this->page['loopBottom']                           = $this->property('loopBottom');
-        $this->page['loopTop']                              = $this->property('loopTop');
-        $this->page['loopHorizontal']                       = $this->property('loopHorizontal');
-        $this->page['navigation']                           = $this->property('navigation');
-        $this->page['navigationPosition']                   = $this->property('navigationPosition');
-        $this->page['slidesNavigation']                     = $this->property('slidesNavigation');
-        $this->page['slidesNavPosition']                    = $this->property('slidesNavPosition');
-        $this->page['paddingTop']                           = $this->property('paddingTop');
-        $this->page['paddingBottom']                        = $this->property('paddingBottom');
-        $this->page['fixedElements']                        = $this->property('fixedElements');
-        $this->page['normalScrollElements']                 = $this->property('normalScrollElements');
-        $this->page['normalScrollElementTouchThreshold']    = $this->property('normalScrollElementTouchThreshold');
-        $this->page['keyboardScrolling']                    = $this->property('keyboardScrolling');
-        $this->page['touchSensitivity']                     = $this->property('touchSensitivity');
-        $this->page['continuousVertical']                   = $this->property('continuousVertical');
-        $this->page['animateAnchor']                        = $this->property('animateAnchor');
-        $this->page['navigationTooltips']                   = json_encode($this->getNavigationTooltips());
-        $this->page['anchors']                              = json_encode($this->getAnchors());
+        foreach ($this->getProperties() as $key => $value) {
+            $this->page[$key] = $value;
+        }
+
+        $this->page['navigationTooltips']   = json_encode($this->getNavigationTooltips());
+        $this->page['anchors']              = json_encode($this->getAnchors());
+    }
+
+    /**
+     * Retrieves all pages from the current parallax.
+     *
+     * @return array
+     */
+    protected function _getPageCollection()
+    {
+        if (!$this->_pageCollection) {
+            $model = new Parallaxes;
+            $this->_pageCollection = $model->getPageCollection($this->property('parallax'), $this->page->id);
+        }
+
+        return $this->_pageCollection;
     }
 
     /**
@@ -311,7 +314,7 @@ class Parallax extends ComponentBase
         $model = new Parallaxes;
         $pages = [];
 
-        foreach ($model->getPageCollection($this->property('parallax')) as $page) {
+        foreach ($this->_getPageCollection() as $page) {
             $pages[] = $page['pagename'];
         }
 
@@ -328,7 +331,7 @@ class Parallax extends ComponentBase
         $model = new Parallaxes;
         $pages = [];
 
-        foreach ($model->getPageCollection($this->property('parallax')) as $page) {
+        foreach ($this->_getPageCollection() as $page) {
             $pages[] = $page['title'];
         }
 

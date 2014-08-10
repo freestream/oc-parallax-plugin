@@ -18,7 +18,7 @@ class Plugin extends PluginBase
     {
         return [
             'name'        => 'Parallax',
-            'description' => 'No description provided yet...',
+            'description' => 'Manage and create multiple parallax sliders that you can view on any page.',
             'author'      => 'Freestream',
             'icon'        => 'icon-th-large'
         ];
