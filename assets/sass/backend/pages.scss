@@ -1,0 +1,73 @@
+//
+// Vendor and Fonts
+//
+
+@import "vendor/font-awesome/scss/font-awesome.scss";
+
+body.dragging, body.dragging * {
+    cursor: move !important;
+
+    .selected_pages {
+        ol {
+            padding-bottom: 10px;
+            li ol {
+                min-height: 30px;
+                min-width: 100px;
+                padding-bottom: 10px;
+            }
+        }
+    }
+}
+
+ol.simple_with_animation {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+
+    li {
+        &.dragged {
+            position: absolute;
+            opacity: 0.5;
+            z-index: 2000;
+        }
+    }
+    ol {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    li.placeholder {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        border: none;
+
+        &:before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            margin-top: -5px;
+            left: -5px;
+            top: -4px;
+            border: 5px solid transparent;
+            border-left-color: blue;
+            border-right: none;
+        }
+    }
+}
+
+.selected_pages {
+    ol.simple_with_animation {
+        padding: 5px;
+
+        li.pages-level-2 {
+            margin-left: 20px;
+
+            ol {
+                display: none;
+            }
+        }
+    }
+}
