@@ -10,7 +10,7 @@ Version
 
 ## How does it work?
 
-The plugin creates a parallax by combining a selection of pages in your active theme. It can manage multiple parallax sliders that can be configured in its own way.
+The plugin creates a parallax by combining a selection of pages in your active theme. It can manage multiple parallax sliders that can be configured in it's own way.
 
 ## Implementation
 Start with creating the pages you want in your parallax. `It's highly recommended that you have no layout create a new layout without the <html><header><body> blocks in the pages that will be used in your parallax due to it will otherwise create duplicate content`. After that go to the **Parallax** manager that is located in the top menu.
@@ -19,7 +19,7 @@ Start with creating the pages you want in your parallax. `It's highly recommende
 
 Create a new parallax and start with giving it a name. The name will later be represented in a dropdown list of selectable parallaxes on the page that will hold the parallax. After that go to the **Pages** tab. Drag and drop all the pages you want to have in your parallax into the right square box called **Selected Pages**.
 
-The selected page can they placed in two levels. The first level will create a vertical parallax and pages in a sub-level will create a horizontal slider. After the pages is selected save the parallax and to to **CMS** and the page that will hold the parallax.
+The selected page can be placed in two levels. The first level will create a vertical parallax and pages in a sub-level will create a horizontal slider. After the pages is selected save the parallax and to to **CMS** and the page that will hold the parallax.
 
 #### Main page for the parallax
 
@@ -59,6 +59,13 @@ The only thing that needs to be done is to add the component.
 ```php
 {% component 'parallax' %}
 ```
+
+## ToDo List
+#### Frontend:
+* Extended possibility for overriding JavaScript events.
+
+#### Backend:
+* Support for multi-level page hierarchy.
 
 Libraries
 -----------
