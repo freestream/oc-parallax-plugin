@@ -274,7 +274,7 @@ class Parallax extends ComponentBase
     }
 
    /**
-     * Build all my parameters for the view
+     * Build all my parameters for the view.
      */
     public function onRender()
     {

@@ -4,7 +4,7 @@ use Backend;
 use System\Classes\PluginBase;
 
 /**
- * Parallax Plugin Information File
+ * Parallax Plugin Information File.
  */
 class Plugin extends PluginBase
 {
