@@ -7,14 +7,13 @@
 body.dragging, body.dragging * {
     cursor: move !important;
 
-    .selected_pages {
-        ol {
-            padding-bottom: 10px;
-            li ol {
-                min-height: 30px;
-                min-width: 100px;
-                padding-bottom: 10px;
-            }
+    ol#selected_pages {
+        border: 2px dashed #d4d4d4;
+        padding-bottom: 40px;
+
+        li ol {
+            padding-bottom: 35px;
+            min-width: 100px;
         }
     }
 }
@@ -42,32 +41,76 @@ ol.simple_with_animation {
         margin: 0;
         padding: 0;
         border: none;
-
-        &:before {
-            position: absolute;
-            content: "";
-            width: 0;
-            height: 0;
-            margin-top: -5px;
-            left: -5px;
-            top: -4px;
-            border: 5px solid transparent;
-            border-left-color: blue;
-            border-right: none;
-        }
     }
 }
 
-.selected_pages {
-    ol.simple_with_animation {
-        padding: 5px;
+ol#selected_pages {
+    border: 1px solid #d4d4d4;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 
-        li.pages-level-2 {
+    min-height: 100px;
+    min-width: 150px;
+
+    padding: 5px;
+
+    > li i {
+        margin-right: 5px;
+    }
+
+    > li, ol > li {
+        border: 1px solid #d4d4d4;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+
+        margin: 5px 0 0 0;
+        padding: 6px;
+    }
+
+    li.placeholder {
+        border: 2px dashed #d4d4d4;
+        min-height: 34px;
+
+        &:before {
+
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            color: #d4d4d4;
+
+            content: "\f067";
+
+            position: absolute;
+            top: inherit;
+            left: inherit;
+        }
+    }
+
+    li.pages-level-1 {
+        li.placeholder {
             margin-left: 20px;
+        }
+    }
 
-            ol {
-                display: none;
-            }
+    li.pages-level-2 {
+        margin-left: 20px;
+
+        &:before {
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            color: #5F5F5F;
+            content: "\f054";
+
+            margin-right: 3px;
+        }
+
+        ol {
+            display: none;
         }
     }
 }

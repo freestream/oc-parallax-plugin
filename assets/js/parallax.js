@@ -23,13 +23,22 @@
  */
 var FreestreamParallax = function(options) {
     var that = this,
-        opt = options || {};
+        opt = options || {},
+        fullpageElement;
 
     /**
      * Initiate.
      */
     that.init = function() {
-        $('#fullpage').fullpage({
+        document.dispatchEvent(new CustomEvent("freestream.parallax.fullpageElement.beforeInitiate", {
+            detail: {
+                opt: opt
+            },
+            bubbles: false,
+            cancelable: false
+        }));
+
+        fullpageElement = $('#fullpage').fullpage({
             verticalCentered: opt.verticalCentered,
             resize : opt.resize,
             anchors: opt.anchors,
@@ -59,14 +68,91 @@ var FreestreamParallax = function(options) {
             slideSelector: '.slide',
 
             //events
-            onLeave: function(index, nextIndex, direction){},
-            afterLoad: function(anchorLink, index){},
-            afterRender: function(){},
-            afterResize: function(){},
-            afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
-            onSlideLeave: function(anchorLink, index, slideIndex, direction){}
+            onLeave: function(index, nextIndex, direction){
+                document.dispatchEvent(new CustomEvent("freestream.parallax.fullpageElement.onLeave", {
+                    detail: {
+                        element: fullpageElement,
+                        nextIndex: nextIndex,
+                        direction: direction,
+                    },
+                    bubbles: false,
+                    cancelable: false
+                }));
+            },
+            afterLoad: function(anchorLink, index) {
+                document.dispatchEvent(new CustomEvent("freestream.parallax.fullpageElement.afterLoad", {
+                    detail: {
+                        element: fullpageElement,
+                        anchorLink: anchorLink,
+                        index: index,
+                    },
+                    bubbles: false,
+                    cancelable: false
+                }));
+            },
+            afterRender: function() {
+                document.dispatchEvent(new CustomEvent("freestream.parallax.fullpageElement.afterRender", {
+                    detail: {
+                        element: fullpageElement
+                    },
+                    bubbles: false,
+                    cancelable: false
+                }));
+            },
+            afterResize: function() {
+                document.dispatchEvent(new CustomEvent("freestream.parallax.fullpageElement.afterResize", {
+                    detail: {
+                        element: fullpageElement
+                    },
+                    bubbles: false,
+                    cancelable: false
+                }));
+            },
+            afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+                document.dispatchEvent(new CustomEvent("freestream.parallax.fullpageElement.afterResize", {
+                    detail: {
+                        element: fullpageElement,
+                        anchorLink: anchorLink,
+                        slideAnchor: slideAnchor,
+                        slideIndex: slideIndex
+                    },
+                    bubbles: false,
+                    cancelable: false
+                }));
+            },
+            onSlideLeave: function(anchorLink, index, slideIndex, direction) {
+                document.dispatchEvent(new CustomEvent("freestream.parallax.fullpageElement.afterResize", {
+                    detail: {
+                        element: fullpageElement,
+                        anchorLink: anchorLink,
+                        index: index,
+                        slideIndex: slideIndex,
+                        direction: direction
+                    },
+                    bubbles: false,
+                    cancelable: false
+                }));
+            }
         });
+
+        document.dispatchEvent(new CustomEvent("freestream.parallax.fullpageElement.afterInitiate", {
+            detail: {
+                element: fullpageElement,
+                opt: opt
+            },
+            bubbles: false,
+            cancelable: false
+        }));
     };
+
+    /**
+     * Returns the initiated fullpage element.
+     *
+     * @return {[element]}
+     */
+    that.getFullpageElement = function() {
+        return fullpageElement
+    }
 
     that.init();
     return that;

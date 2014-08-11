@@ -42,12 +42,13 @@ var FreestreamParallax = function() {
         $("ol.simple_with_animation").sortable({
             group: 'simple_with_animation',
             pullPlaceholder: false,
+            placeholder: '<li class="placeholder">',
             nested: true,
+            vertical: true,
             onDrop: function  (item, targetContainer, _super) {
                 var clonedItem = $('<li/>').css({height: 0});
 
                 that.setClassToItem(item);
-                that.addSubDecorationToItem(item);
 
                 item.before(clonedItem);
                 clonedItem.animate({'height': item.height()});
@@ -63,6 +64,11 @@ var FreestreamParallax = function() {
 
                     _super(item)
                 });
+
+                /**
+                 * Flatten any multi level children.
+                 */
+                item.find("li").detach().appendTo(item.parent());
 
                 jsonObj = [];
 
@@ -117,20 +123,6 @@ var FreestreamParallax = function() {
         });
 
         item.addClass('pages-level-' + item.parents('ol').length);
-    };
-
-    /**
-     * Adds s element on all sub-level elements.
-     *
-     * @param {[element]} item
-     */
-    that.addSubDecorationToItem = function(item) {
-        if (item.parents('ol').length > 1) {
-            item.find('.fa-level-up').remove();
-            item.prepend('<i class="fa fa-level-up fa-rotate-90"></i>');
-        } else {
-            item.find('.fa-level-up').remove();
-        }
     };
 
     /**

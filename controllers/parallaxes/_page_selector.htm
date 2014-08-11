@@ -23,48 +23,44 @@
  * THE SOFTWARE.
  */
 ?>
-<div class="row">
-    <div class="col-sm-12">
-    <p class="text-left">
-        Drag and drop the pages you have available in your current theme into right field.<br />
-        The first level will generate a vertical parallax and all pages in the second level will result in a horizontal parallax.
-    </p>
-    </div>
-    <div class="col-sm-6">
-        <h4>Available Pages</h4>
-    </div>
-    <div class="col-sm-6">
-        <h4>Selected Pages</h4>
-    </div>
-    <div class="col-sm-6">
-        <ol class="simple_with_animation vertical available_pages">
-            <?php foreach ($this->getAllAvailablePages() as $pageName => $pageTitle): ?>
-                <li data-pagename="<?php echo $pageName; ?>">
-                    <?php echo $pageTitle; ?>
-                    <ol></ol>
-                </li>
-            <?php endforeach; ?>
-        </ol>
-    </div>
-    <div class="col-sm-6 no-selections selected_pages">
-        <ol id="selected_pages" class="simple_with_animation vertical" style="min-height: 100px; min-width: 150px; border: 1px black dashed;">
-            <?php foreach ($this->getSelectedPagesInHierarchy() as $parent): ?>
-                <li class="pages-level-1" data-pagename="<?php echo $parent['pagename']; ?>">
-                    <?php echo $parent['title']; ?>
-                    <ol>
-                        <?php foreach ($parent['children'] as $child): ?>
-                            <li class="pages-level-2" data-pagename="<?php echo $child['pagename']; ?>">
-                                <i class="fa fa-level-up fa-rotate-90"></i>
-                                <?php echo $child['title']; ?>
-                            </li>
-                        <?php endforeach; ?>
-                    </ol>
-                </li>
-            <?php endforeach; ?>
-        </ol>
-    </div>
+<div class="col-sm-12">
+<p class="text-left">
+    Drag and drop the pages you have available in your current theme into right field.<br />
+    The first level will generate a vertical parallax and all pages in the second level will result in a horizontal parallax.
+</p>
 </div>
-
+<div class="col-sm-6">
+    <h4>Available Pages</h4>
+</div>
+<div class="col-sm-6">
+    <h4>Selected Pages</h4>
+</div>
+<div class="col-sm-6">
+    <ol id="available_pages" class="simple_with_animation">
+        <?php foreach ($this->getAllAvailablePages() as $pageName => $pageTitle): ?>
+            <li data-pagename="<?php echo $pageName; ?>">
+                <?php echo $pageTitle; ?>
+                <ol></ol>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
+<div class="col-sm-6">
+    <ol id="selected_pages" class="simple_with_animation vertical">
+        <?php foreach ($this->getSelectedPagesInHierarchy() as $parent): ?>
+            <li class="pages-level-1" data-pagename="<?php echo $parent['pagename']; ?>">
+                <?php echo $parent['title']; ?>
+                <ol>
+                    <?php foreach ($parent['children'] as $child): ?>
+                        <li class="pages-level-2" data-pagename="<?php echo $child['pagename']; ?>">
+                            <?php echo $child['title']; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ol>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
 <script type="text/javascript">
     var freestreamParallax = new FreestreamParallax();
 </script>

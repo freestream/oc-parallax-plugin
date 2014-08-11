@@ -108,7 +108,7 @@ class Parallaxes extends Model
         $collection = [];
 
         foreach ($pages as $parent) {
-            if (in_array($parent['pagename'], $skipPages) || $this->_isPageHidden($parent['pagename'])) {
+            if (!$this->_isPageValid($parallaxId, $parent['pagename'], $skipPages)) {
                 continue;
             }
 
@@ -122,7 +122,7 @@ class Parallaxes extends Model
 
             if (is_array($parent['children'])) {
                 foreach ($parent['children'] as $child) {
-                    if (in_array($child['pagename'], $skipPages) || $this->_isPageHidden($child['pagename'])) {
+                    if (!$this->_isPageValid($parallaxId, $child['pagename'], $skipPages)) {
                         continue;
                     }
 
@@ -141,6 +141,50 @@ class Parallaxes extends Model
         }
 
         return $collection;
+    }
+
+    /**
+     * Validates a specified page.
+     *
+     * @param  integer  $parallaxId
+     * @param  string   $fileName
+     * @param  array    $skipPages
+     *
+     * @return boolean
+     */
+    protected function _isPageValid($parallaxId, $fileName, $skipPages)
+    {
+        if (in_array($fileName, $skipPages)
+            || $this->_isPageHidden($fileName)
+            || $this->_hasPageSameParallax($parallaxId, $fileName)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Checks if the specified page has a parallax component with the same id
+     * as the main page.
+     *
+     * @param  integer  $parallaxId
+     * @param  string   $fileName
+     *
+     * @return boolean
+     */
+    protected function _hasPageSameParallax($parallaxId, $fileName)
+    {
+        $page = $this->_getRouter()->findByUrl($this->_getUrlFromFilename($fileName));
+
+        foreach ($page->settings['components'] as $component => $properties) {
+            list($name, $alias) = strpos($component, ' ') ? explode(' ', $component) : array($component, $component);
+
+            if ($name == 'parallax') {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

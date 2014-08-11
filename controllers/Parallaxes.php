@@ -70,11 +70,6 @@ class Parallaxes extends Controller
         BackendMenu::setContext('Freestream.Parallax', 'parallax', 'parallaxes');
 
         /**
-         * Required library item.
-         */
-        $this->addJs('/plugins/freestream/parallax/assets/js/backend/jquery-sortable.js');
-
-        /**
          * Customization overrides.
          */
         $this->addCss('/plugins/freestream/parallax/assets/css/backend/pages.css');
