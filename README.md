@@ -6,7 +6,7 @@ Manage and create multiple parallax sliders that you can view on any page.
 Version
 ----
 
-1.0.2
+1.0.4
 
 ## How does it work?
 
@@ -59,13 +59,6 @@ The only thing that needs to be done is to add the component.
 ```php
 {% component 'parallax' %}
 ```
-
-## ToDo List
-#### Frontend:
-* Extended possibility for overriding JavaScript events.
-
-#### Backend:
-* Support for multi-level page hierarchy.
 
 Libraries
 -----------

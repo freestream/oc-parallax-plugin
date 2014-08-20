@@ -68,7 +68,11 @@ var FreestreamParallax = function() {
                 /**
                  * Flatten any multi level children.
                  */
-                item.find("li").detach().appendTo(item.parent());
+                console.log(targetContainer.el.get(0) !== $('#selected_pages').get(0));
+                if (targetContainer.el.get(0) !== $('#selected_pages').get(0)) {
+                    console.log('ASDASD');
+                    item.find("li").detach().appendTo(item.parent());
+                }
 
                 jsonObj = [];
 
@@ -103,12 +107,13 @@ var FreestreamParallax = function() {
 
                 _super($item, container);
             },
-            onDrag: function ($item, position) {
+            onDrag: function ($item, position, _super, event) {
                 $item.css({
                     left: position.left - adjustment.left,
                     top: position.top - adjustment.top
                 })
             }
+
         });
     };
 

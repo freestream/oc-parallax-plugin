@@ -10,3 +10,5 @@
     - Markup fixes for backends page selector.
     - Markup fixes for frontend anchors.
     - Removed possibility to include pages with an attached parallax component.
+1.0.4:
+    - Markup and JavaScript fixes for backends page selector.

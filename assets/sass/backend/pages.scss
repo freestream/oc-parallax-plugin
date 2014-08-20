@@ -14,14 +14,38 @@ body.dragging, body.dragging * {
         li ol {
             padding-bottom: 35px;
             min-width: 100px;
+            height: 80px;
+            border: 1px dashed #ecf0f1;
         }
+    }
+
+    ol#available_pages {
+        border: 2px dashed #d4d4d4;
+        padding-bottom: 40px;
+    }
+}
+
+.panel-header {
+    float: left;
+    width: 100%;
+    background: #3d5265;
+    padding: 0px 20px;
+    color: #ecf0f1;
+
+    h4 {
+        font-family: 'Open Sans', Arial, sans-serif;
+        color: #ecf0f1;
+        text-transform: uppercase;
+        font-size: 14px;
     }
 }
 
 ol.simple_with_animation {
     list-style-type: none;
-    padding: 0px;
+    padding: 10px 20px;
     margin: 0px;
+
+    background-color: white;
 
     li {
         &.dragged {
@@ -44,8 +68,23 @@ ol.simple_with_animation {
     }
 }
 
+ol#available_pages {
+    border: 1px solid #ddd;
+    min-height: 100px;
+    min-width: 150px;
+
+    li {
+        background-color: #2b3e50;
+        border-radius: 0;
+        color: #ecf0f1;
+        padding: 10px 20px 10px 10px;
+        margin-bottom: 5px;
+
+    }
+}
+
 ol#selected_pages {
-    border: 1px solid #d4d4d4;
+    border: 1px solid #ddd;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -53,24 +92,21 @@ ol#selected_pages {
     min-height: 100px;
     min-width: 150px;
 
-    padding: 5px;
+    padding: 10px 20px;
+
+    font-size: 1.25rem;
 
     > li i {
         margin-right: 5px;
     }
 
     > li, ol > li {
-        border: 1px solid #d4d4d4;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-
         margin: 5px 0 0 0;
         padding: 6px;
     }
 
     li.placeholder {
-        border: 2px dashed #d4d4d4;
+        //border: 2px dashed #d4d4d4;
         min-height: 34px;
 
         &:before {
@@ -90,6 +126,20 @@ ol#selected_pages {
     }
 
     li.pages-level-1 {
+        background-color: #2b3e50;
+        border-radius: 0;
+
+        color: #ecf0f1;
+
+        padding: 10px 20px 20px 0px;
+
+        > .page-heading {
+            padding: 5px 20px;
+            margin-bottom: .4rem;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
         li.placeholder {
             margin-left: 20px;
         }
@@ -97,13 +147,17 @@ ol#selected_pages {
 
     li.pages-level-2 {
         margin-left: 20px;
+        background-color: #3d5265;
+        color: #ecf0f1;
+
+        border-radius: 0;
 
         &:before {
             font-family: FontAwesome;
             font-style: normal;
             font-weight: normal;
             text-decoration: inherit;
-            color: #5F5F5F;
+            color: #e6802b;
             content: "\f054";
 
             margin-right: 3px;
