@@ -23,15 +23,15 @@
 tabs:
     fields:
         title:
-            tab: General
+            tab: freestream.parallax::lang.controllers.parallax.general
             span: left
-            label: Title
+            label: freestream.parallax::lang.controllers.parallax.title
 
         pages:
-            tab: Pages
+            tab: freestream.parallax::lang.controllers.parallax.pages
             cssClass: hidden
 
         selector:
-            tab: Pages
+            tab: freestream.parallax::lang.controllers.parallax.pages
             type: partial
             path: page_selector

@@ -34,12 +34,12 @@ defaultRedirect: freestream/parallax/parallaxes
 
 # Create page
 create:
-    title: Create Parallax
+    title: freestream.parallax::lang.controllers.parallax.create
     redirect: freestream/parallax/parallaxes/update/:id
     redirectClose: freestream/parallax/parallaxes
 
 # Update page
 update:
-    title: Edit Parallax
+    title: freestream.parallax::lang.controllers.parallax.edit
     redirect: freestream/parallax/parallaxes
     redirectClose: freestream/parallax/parallaxes

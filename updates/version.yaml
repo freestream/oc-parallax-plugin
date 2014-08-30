@@ -12,3 +12,7 @@
     - Removed possibility to include pages with an attached parallax component.
 1.0.4:
     - Markup and JavaScript fixes for backends page selector.
+1.0.5:
+    - Major bugfix of page selector.
+    - Added support for system user permissions.
+    - Added language support and a swedish translation of the plugin.

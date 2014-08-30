@@ -21,14 +21,14 @@
 # THE SOFTWARE.
 
 columns:
-  title:
-    label: Title
-    searchable: true
+    title:
+        label: freestream.parallax::lang.controllers.parallax.title
+        searchable: true
 
-  created_at:
-    label: Created
-    type: date
+    created_at:
+        label: freestream.parallax::lang.controllers.parallax.created
+        type: date
 
-  updated_at:
-    label: Updated
-    type: date
+    updated_at:
+        label: freestream.parallax::lang.controllers.parallax.updated
+        type: date

@@ -30,6 +30,7 @@ use Backend\Classes\Controller;
 use Freestream\Parallax\Models\Parallaxes as Parallax;
 use Cms\Classes\Page;
 use Flash;
+use Land;
 
 /**
  * Parallaxes Back-end Controller
@@ -59,6 +60,13 @@ class Parallaxes extends Controller
      * @var string
      */
     public $listConfig = 'config_list.yaml';
+
+    /**
+     * User permission requirement ID.
+     *
+     * @var array
+     */
+    public $requiredPermissions = ['freestream.parallax.manage_parallaxes'];
 
     /**
      * Initial constructor.
@@ -91,7 +99,9 @@ class Parallaxes extends Controller
                 }
             }
 
-            Flash::success('Parallax(es) has been deleted successfully.');
+            Flash::success(
+                Lang::get('freestream.parallax::lang.controllers.parallax.deleted_success')
+            );
         }
 
          return $this->listRefresh();

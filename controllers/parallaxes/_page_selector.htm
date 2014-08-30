@@ -25,18 +25,17 @@
 ?>
 <div class="col-sm-12">
 <p class="text-left">
-    Drag and drop the pages you have available in your current theme into right field.<br />
-    The first level will generate a vertical parallax and all pages in the second level will result in a horizontal parallax.
+    <?= trans('freestream.parallax::lang.controllers.parallax.how_to') ?>
 </p>
 </div>
 <div class="col-sm-6">
     <div class="panel-header">
-        <h4>Available Pages</h4>
+        <h4><?= e(trans('freestream.parallax::lang.controllers.parallax.available_pages')) ?></h4>
     </div>
 </div>
 <div class="col-sm-6">
     <div class="panel-header">
-        <h4>Selected Pages</h4>
+        <h4><?= e(trans('freestream.parallax::lang.controllers.parallax.selected_pages')) ?></h4>
     </div>
 </div>
 <div class="col-sm-6">

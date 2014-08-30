@@ -1,5 +1,6 @@
 <?php namespace Freestream\Parallax;
 
+use Lang;
 use Backend;
 use System\Classes\PluginBase;
 
@@ -18,7 +19,7 @@ class Plugin extends PluginBase
     {
         return [
             'name'        => 'Parallax',
-            'description' => 'Manage and create multiple parallax sliders that you can view on any page.',
+            'description' => Lang::get('freestream.parallax::lang.system.details.description'),
             'author'      => 'Freestream',
             'icon'        => 'icon-th-large'
         ];
@@ -37,6 +38,21 @@ class Plugin extends PluginBase
     }
 
     /**
+     * Registers system user permissions.
+     *
+     * @return array
+     */
+    public function registerPermissions()
+    {
+        return [
+            'freestream.parallax.manage_parallaxes' => [
+                'label' => Lang::get('freestream.parallax::lang.system.permissions.manage_parallaxes'),
+                'tab'   => 'Parallax'
+            ]
+        ];
+    }
+
+    /**
      * Registers a new navigation item.
      *
      * @return array
@@ -44,15 +60,16 @@ class Plugin extends PluginBase
     public function registerNavigation()
     {
         return [
-            'gallery' => [
-                'label'     => 'Parallax',
-                'url'       => Backend::url('freestream/parallax/parallaxes'),
-                'icon'      => 'icon-th-large',
-                'sideMenu'  => [
-                    'gallery'   => [
-                        'label'     => 'Parallax',
-                        'icon'      => 'icon-th-large',
-                        'url'       => Backend::url('freestream/parallax/parallaxes'),
+            'parallax' => [
+                'label'         => 'Parallax',
+                'url'           => Backend::url('freestream/parallax/parallaxes'),
+                'icon'          => 'icon-th-large',
+                'permissions'   => ['freestream.parallax.*'],
+                'sideMenu'      => [
+                    'parallax'      => [
+                        'label'         => 'Parallax',
+                        'icon'          => 'icon-th-large',
+                        'url'           => Backend::url('freestream/parallax/parallaxes'),
                     ],
                 ]
             ]

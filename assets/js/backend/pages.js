@@ -68,23 +68,21 @@ var FreestreamParallax = function() {
                 /**
                  * Flatten any multi level children.
                  */
-                console.log(targetContainer.el.get(0) !== $('#selected_pages').get(0));
                 if (targetContainer.el.get(0) !== $('#selected_pages').get(0)) {
-                    console.log('ASDASD');
                     item.find("li").detach().appendTo(item.parent());
                 }
 
                 jsonObj = [];
 
                 $("#selected_pages").children('li').each(function (index, element) {
-                    if ($(element).clone().children().remove().end().text().trim()) {
+                    if ($(element).find('>.page-heading').text().trim()) {
 
                         parent = getJsonElement(element, true);
 
                         $(element).find('ol').children('li').each(function (subIndex, subElement) {
                             subTmp = {}
 
-                            if ($(subElement).clone().children().remove().end().text().trim()) {
+                            if ($(subElement).find('>.page-heading').text().trim()) {
                                 child = getJsonElement(subElement);
                                 parent["children"].push(child);
                             }
@@ -139,7 +137,7 @@ var FreestreamParallax = function() {
      */
     function getCleanElementText(element)
     {
-        return $(element).clone().children().remove().end().text().trim();
+        return $(element).find('>.page-heading').text().trim();
     }
 
     /**

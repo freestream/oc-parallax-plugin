@@ -27,7 +27,7 @@ list: @/plugins/freestream/parallax/models/parallaxes/columns.yaml
 modelClass: Freestream\Parallax\Models\Parallaxes
 
 # List Title
-title: Manage Parallaxes
+title: freestream.parallax::lang.controllers.parallax.manage_parallaxes
 
 # Link URL for each record
 recordUrl: freestream/parallax/parallaxes/update/:id
@@ -51,5 +51,7 @@ showCheckboxes: true
 toolbar:
     # Partial for toolbar buttons
     buttons: list_toolbar
+
+    # Search widget configuration
     search:
         prompt: backend::lang.list.search_prompt

@@ -44,7 +44,7 @@
                     data-hotkey-mac="cmd+s"
                     data-load-indicator="Creating Parallaxes..."
                     class="btn btn-primary">
-                    Create
+                    <?= e(trans('backend::lang.form.save')) ?>
                 </button>
                 <button
                     type="button"
@@ -54,10 +54,10 @@
                     data-hotkey-mac="cmd+enter"
                     data-load-indicator="Creating Parallaxes..."
                     class="btn btn-default">
-                    Create and Close
+                    <?= e(trans('backend::lang.form.save_and_close')) ?>
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('freestream/parallax/parallaxes') ?>">Cancel</a>
+                    or <a href="<?= Backend::url('freestream/parallax/parallaxes') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
                 </span>
             </div>
         </div>
@@ -65,5 +65,9 @@
     <?= Form::close() ?>
 <?php else: ?>
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('freestream/parallax/parallaxes') ?>" class="btn btn-default">Return to parallaxes list</a></p>
+    <p>
+        <a href="<?= Backend::url('freestream/parallax/parallaxes') ?>" class="btn btn-default">
+            <?= e(trans('freestream.parallax::lang.controllers.parallax.return_to_parallaxes')) ?>
+        </a>
+    </p>
 <?php endif ?>
