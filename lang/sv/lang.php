@@ -35,6 +35,7 @@ return [
     ],
     'controllers' => [
         'parallax' => [
+            'parallaxes'            => 'Parallaxer',
             'title'                 => 'Titel',
             'pages'                 => 'Sidor',
             'create'                => 'Skapa parallax',
@@ -44,7 +45,7 @@ return [
             'new_parallax'          => 'Ny parallax',
             'created'               => 'Skapad',
             'updated'               => 'Uppdaterad',
-            'how_to'                => 'Dra och släpp bland de sidor du har tillgängliga i ditt aktiva tema till det högra fältet.<br \>Den första nivån kommer att generera en vertical parallax och alla sidor i den andra nivån skapar en horisontell parallax.',
+            'how_to'                => 'Dra och släpp bland de sidor du har tillgängliga i ditt aktiva tema till det högra fältet.<br \>Den första nivån kommer att generera en vertikal parallax och alla sidor i den andra nivån skapar en horisontell parallax.',
             'available_pages'       => 'Tillgängliga sidor',
             'selected_pages'        => 'Valda sidor',
             'return_to_parallaxes'  => 'Återvänd till parallax listan',

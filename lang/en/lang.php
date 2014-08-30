@@ -35,6 +35,7 @@ return [
     ],
     'controllers' => [
         'parallax' => [
+            'parallaxes'            => 'Parallaxes',
             'title'                 => 'Title',
             'pages'                 => 'Pages',
             'create'                => 'Create Parallax',

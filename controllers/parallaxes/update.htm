@@ -25,7 +25,7 @@
 ?>
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('freestream/parallax/parallaxes') ?>">Parallaxes</a></li>
+        <li><a href="<?= Backend::url('freestream/parallax/parallaxes') ?>"><?= e(trans('freestream.parallax::lang.controllers.parallax.parallaxes')) ?></a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
