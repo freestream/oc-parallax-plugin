@@ -50,6 +50,10 @@ return [
             'selected_pages'        => 'Valda sidor',
             'return_to_parallaxes'  => 'Återvänd till parallax listan',
             'manage_parallaxes'     => 'Hantera parallaxer',
+            'available_title'       => 'Valbara sidor',
+            'available_description' => 'Klicka på den sidan du vill inkludera.',
+            'horizontal_label'      => 'Lägg till horisontell sida',
+            'vertical_label'        => 'Lägg till vertikal sida'
         ]
     ],
     'components' => [

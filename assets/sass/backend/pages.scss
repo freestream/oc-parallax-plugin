@@ -2,169 +2,180 @@
 // Vendor and Fonts
 //
 
-@import "vendor/font-awesome/scss/font-awesome.scss";
+@import "../vendor/font-awesome/scss/font-awesome.scss";
+
+@mixin page-heading {
+    padding: 5px 20px;
+    margin-bottom: .4rem;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+@mixin page-slide-level1 {
+    background-color: #2b3e50;
+    color: #ecf0f1;
+
+    padding: 10px 20px 10px 0px;
+
+    > .page-heading {
+        @include page-heading
+    }
+}
+
+@mixin page-slide-level2 {
+    margin-left: 20px;
+    background-color: #3d5265;
+    color: #ecf0f1;
+
+    padding: 10px 20px 10px 0px;
+
+    border-radius: 0;
+
+    &:before {
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        color: #e6802b;
+        content: "\f054";
+
+        margin: 0px 5px;
+    }
+
+    ol {
+        display: none;
+    }
+}
+
+@mixin resetOl {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
 
 body.dragging, body.dragging * {
     cursor: move !important;
 
-    ol#selected_pages {
-        border: 2px dashed #d4d4d4;
-        padding-bottom: 40px;
-
-        li ol {
-            padding-bottom: 35px;
-            min-width: 100px;
-            height: 80px;
-            border: 1px dashed #ecf0f1;
+    ol#parallax-pages {
+        li.pages-level-1 {
+            padding-bottom: 50px;
         }
-    }
-
-    ol#available_pages {
-        border: 2px dashed #d4d4d4;
-        padding-bottom: 40px;
     }
 }
 
-.panel-header {
-    float: left;
-    width: 100%;
-    background: #3d5265;
-    padding: 0px 20px;
-    color: #ecf0f1;
+div.add-page {
+    @include page-slide-level1;
 
-    h4 {
-        font-family: 'Open Sans', Arial, sans-serif;
-        color: #ecf0f1;
-        text-transform: uppercase;
-        font-size: 14px;
-    }
+    color: #ffffff;
+    background-color: #5fb6f5;
+    border-color: #47abf4;
+
+    height: 36px;
 }
 
-ol.simple_with_animation {
-    list-style-type: none;
-    padding: 10px 20px;
-    margin: 0px;
+div.parallax {
+    padding-left: 0px;
 
-    background-color: white;
-
-    li {
-        &.dragged {
-            position: absolute;
-            opacity: 0.5;
-            z-index: 2000;
-        }
-    }
     ol {
-        list-style-type: none;
-        padding: 0px;
-        margin: 0px;
+        @include resetOl;
     }
 
-    li.placeholder {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        border: none;
+    .placeholder:before {
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        font-size: 15px;
+        margin-left: 5px;
+        content: "\f061";
+    }
+
+    ol#parallax-pages {
+        border: 1px solid #ddd;
+
+        div.controls {
+            display: inline;
+
+            i.fa.fa-times {
+                right: 0;
+                position: absolute;
+                margin-right: 45px;
+                line-height: 20px;
+                cursor: pointer;
+            }
+        }
+
+        li {
+            margin-bottom: 5px;
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+
+            .btn {
+                margin: 10px 0px 2px 20px;
+            }
+        }
+
+        li.pages-level-1 {
+            @include page-slide-level1;
+            margin-bottom: 20px;
+        }
+
+        li.pages-level-2 {
+            @include page-slide-level2;
+
+            div.controls i.fa.fa-times {
+                margin-right: 60px
+            }
+        }
+    }
+
+    .btn {
+        margin-top: 10px;
     }
 }
 
-ol#available_pages {
-    border: 1px solid #ddd;
-    min-height: 100px;
-    min-width: 150px;
+div.parallax-available {
+    ol#available-pages {
+        @include resetOl;
 
-    li {
-        background-color: #2b3e50;
-        border-radius: 0;
-        color: #ecf0f1;
-        padding: 10px 20px 10px 10px;
-        margin-bottom: 5px;
+        li {
+            font-size: 12px;
 
-    }
-}
+            cursor: pointer;
 
-ol#selected_pages {
-    border: 1px solid #ddd;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+            height: 41px;
 
-    min-height: 100px;
-    min-width: 150px;
+            padding: 11px 15px;
+            color: #666666;
+            border-color: #eeeeee;
 
-    padding: 10px 20px;
+            border-top-width: 0;
+            border-left: 3px solid transparent;
+            padding-left: 17px;
 
-    font-size: 1.25rem;
+            line-height: 1.428571429;
+            vertical-align: top;
+            border-top: 1px solid #dddddd;
 
-    > li i {
-        margin-right: 5px;
-    }
+            &:hover {
+                background: #4da7e8 !important;
+                color: white;
+            }
 
-    > li, ol > li {
-        margin: 5px 0 0 0;
-        padding: 6px;
-    }
-
-    li.placeholder {
-        //border: 2px dashed #d4d4d4;
-        min-height: 34px;
-
-        &:before {
-
-            font-family: FontAwesome;
-            font-style: normal;
-            font-weight: normal;
-            text-decoration: inherit;
-            color: #d4d4d4;
-
-            content: "\f067";
-
-            position: absolute;
-            top: inherit;
-            left: inherit;
-        }
-    }
-
-    li.pages-level-1 {
-        background-color: #2b3e50;
-        border-radius: 0;
-
-        color: #ecf0f1;
-
-        padding: 10px 20px 20px 0px;
-
-        > .page-heading {
-            padding: 5px 20px;
-            margin-bottom: .4rem;
-            display: inline-block;
-            text-transform: uppercase;
+            div.controls {
+                display: none;
+            }
         }
 
-        li.placeholder {
-            margin-left: 20px;
-        }
-    }
-
-    li.pages-level-2 {
-        margin-left: 20px;
-        background-color: #3d5265;
-        color: #ecf0f1;
-
-        border-radius: 0;
-
-        &:before {
-            font-family: FontAwesome;
-            font-style: normal;
-            font-weight: normal;
-            text-decoration: inherit;
-            color: #e6802b;
-            content: "\f054";
-
-            margin-right: 3px;
+        li:nth-child(even) {
+            background-color: #f5f5f5;
         }
 
-        ol {
-            display: none;
+        li:first-child {
+            border-top: 0px;
         }
     }
 }

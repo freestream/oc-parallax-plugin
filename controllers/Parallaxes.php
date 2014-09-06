@@ -28,6 +28,7 @@
 use BackendMenu;
 use Backend\Classes\Controller;
 use Freestream\Parallax\Models\Parallaxes as Parallax;
+use System\Classes\SystemException;
 use Cms\Classes\Page;
 use Flash;
 use Land;
@@ -105,6 +106,23 @@ class Parallaxes extends Controller
         }
 
          return $this->listRefresh();
+    }
+
+    /**
+     *
+     *
+     * @return string
+     */
+    public function onOpenAvailablePages()
+    {
+        if (!post('button_id')) {
+            throw new SystemException('Expected to get a button id for tracking');
+        }
+
+        $this->vars['button_id'] = post('button_id');
+        $this->vars['pages'] = Page::getNameList();
+
+        return $this->makePartial('available_page');
     }
 
     /**

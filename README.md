@@ -6,7 +6,7 @@ Manage and create multiple parallax sliders that you can view on any page.
 Version
 ----
 
-1.0.5
+1.0.6
 
 ## How does it work?
 

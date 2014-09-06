@@ -23,53 +23,45 @@
  * THE SOFTWARE.
  */
 ?>
-<div class="col-sm-12">
-<p class="text-left">
-    <?= trans('freestream.parallax::lang.controllers.parallax.how_to') ?>
-</p>
-</div>
-<div class="col-sm-6">
-    <div class="panel-header">
-        <h4><?= e(trans('freestream.parallax::lang.controllers.parallax.available_pages')) ?></h4>
+<div class="col-sm-12 parallax">
+    <div class="form-preview">
+        <ol id="parallax-pages" class="page_selector">
+            <?php foreach ($this->getSelectedPagesInHierarchy() as $parent): ?>
+                <li class="pages-level-1" data-pagename="<?php echo $parent['pagename']; ?>">
+                    <div class="controls">
+                        <i class="fa fa-times"></i>
+                    </div>
+                    <span class="page-heading">
+                        <?php echo $parent['title']; ?>
+                    </span>
+                    <ol>
+                        <?php foreach ($parent['children'] as $child): ?>
+                            <li class="pages-level-2" data-pagename="<?php echo $child['pagename']; ?>">
+                                <div class="controls">
+                                    <i class="fa fa-times remove"></i>
+                                </div>
+                                <span class="page-heading">
+                                    <?php echo $child['title']; ?>
+                                </span>
+                            </li>
+                        <?php endforeach; ?>
+                    </ol>
+                    <?php $buttonId = uniqid() ?>
+                    <div class="btn btn-primary oc-icon-plus" id="<?php echo $buttonId ?>" data-control="popup" data-handler="onOpenAvailablePages" data-request-data="button_id: '<?php echo $buttonId ?>'">
+                        <?= e(trans('freestream.parallax::lang.controllers.parallax.horizontal_label')) ?>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+        <?php $buttonId = uniqid() ?>
+        <div class="btn btn-primary oc-icon-plus" id="<?php echo $buttonId ?>" data-control="popup" data-handler="onOpenAvailablePages" data-request-data="button_id: '<?php echo $buttonId ?>'">
+            <?= e(trans('freestream.parallax::lang.controllers.parallax.vertical_label')) ?>
+        </div>
     </div>
-</div>
-<div class="col-sm-6">
-    <div class="panel-header">
-        <h4><?= e(trans('freestream.parallax::lang.controllers.parallax.selected_pages')) ?></h4>
-    </div>
-</div>
-<div class="col-sm-6">
-    <ol id="available_pages" class="simple_with_animation">
-        <?php foreach ($this->getAllAvailablePages() as $pageName => $pageTitle): ?>
-            <li data-pagename="<?php echo $pageName; ?>">
-                <span class="page-heading">
-                    <?php echo $pageTitle; ?>
-                </span>
-                <ol></ol>
-            </li>
-        <?php endforeach; ?>
-    </ol>
-</div>
-<div class="col-sm-6">
-    <ol id="selected_pages" class="simple_with_animation vertical">
-        <?php foreach ($this->getSelectedPagesInHierarchy() as $parent): ?>
-            <li class="pages-level-1" data-pagename="<?php echo $parent['pagename']; ?>">
-                <span class="page-heading">
-                    <?php echo $parent['title']; ?>
-                </span>
-                <ol>
-                    <?php foreach ($parent['children'] as $child): ?>
-                        <li class="pages-level-2" data-pagename="<?php echo $child['pagename']; ?>">
-                            <span class="page-heading">
-                                <?php echo $child['title']; ?>
-                            </span>
-                        </li>
-                    <?php endforeach; ?>
-                </ol>
-            </li>
-        <?php endforeach; ?>
-    </ol>
 </div>
 <script type="text/javascript">
-    var freestreamParallax = new FreestreamParallax();
+    var freestreamParallax = new FreestreamParallax({
+        horizontal_button_text: "<?= e(trans('freestream.parallax::lang.controllers.parallax.horizontal_label')) ?>",
+        vertical_button_text: "<?= e(trans('freestream.parallax::lang.controllers.parallax.vertical_label')) ?>",
+    });
 </script>

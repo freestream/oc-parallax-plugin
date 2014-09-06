@@ -50,6 +50,10 @@ return [
             'selected_pages'        => 'Selected Pages',
             'return_to_parallaxes'  => 'Return to parallaxes list',
             'manage_parallaxes'     => 'Manage Parallaxes',
+            'available_title'       => 'Available Pages',
+            'available_description' => 'Click on the page you want to include.',
+            'horizontal_label'      => 'Add horizontal page',
+            'vertical_label'        => 'Add vertical page'
         ]
     ],
     'components' => [

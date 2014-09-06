@@ -21,28 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-var FreestreamParallax = function() {
+var FreestreamParallax = function(options) {
     /**
      * Initial variables.
      */
     var that = this,
+        opt = options || {},
         adjustment;
+
+    var counter = 0;
+
+    opt.horizontal_button_text = opt.horizontal_button_text || 'Add horizontal page';
+    opt.vertical_button_text = opt.vertical_button_text || 'Add vertical page';
 
     /**
      * Initiate
      */
     that.init = function() {
         that.initiateSortable();
+
+        $('ol#parallax-pages div.controls i.fa.fa-times').on( "click", function() {
+            $(this).parent().parent().remove();
+            updateJsonString();
+        });
     };
 
     /**
      * Setup sortable elements.
      */
     that.initiateSortable = function() {
-        $("ol.simple_with_animation").sortable({
-            group: 'simple_with_animation',
-            pullPlaceholder: false,
-            placeholder: '<li class="placeholder">',
+        $("ol#parallax-pages").sortable({
+            group: 'page_selector',
+            exclude: '.add-page',
             nested: true,
             vertical: true,
             onDrop: function  (item, targetContainer, _super) {
@@ -58,8 +68,8 @@ var FreestreamParallax = function() {
 
                     if (item.parents('ol').length > 1) {
                         item.find('ol').remove();
-                    } else if (item.children('ol').size() < 1) {
-                        item.append('<ol></ol>');
+                    } else {
+                        item.find('.btn').before('<ol></ol>');
                     }
 
                     _super(item)
@@ -68,31 +78,22 @@ var FreestreamParallax = function() {
                 /**
                  * Flatten any multi level children.
                  */
-                if (targetContainer.el.get(0) !== $('#selected_pages').get(0)) {
+                if (targetContainer.el.get(0) !== $('#parallax-pages').get(0)) {
                     item.find("li").detach().appendTo(item.parent());
+                    item.parent().find('li .btn').remove();
+                } else {
+                    if (!item.find('.btn').length) {
+                        var uid = getUniqId();
+
+                        $('#parallax-pages').find('.btn').first().clone()
+                            .attr("id", uid)
+                            .attr('data-request-data', 'button_id: ' + '\'' + uid + '\'')
+                            .html(opt.horizontal_button_text)
+                            .appendTo(item);
+                    }
                 }
 
-                jsonObj = [];
-
-                $("#selected_pages").children('li').each(function (index, element) {
-                    if ($(element).find('>.page-heading').text().trim()) {
-
-                        parent = getJsonElement(element, true);
-
-                        $(element).find('ol').children('li').each(function (subIndex, subElement) {
-                            subTmp = {}
-
-                            if ($(subElement).find('>.page-heading').text().trim()) {
-                                child = getJsonElement(subElement);
-                                parent["children"].push(child);
-                            }
-                        });
-
-                        jsonObj.push(parent);
-                    }
-                });
-
-                $('#Form-field-Parallaxes-pages').val(JSON.stringify(jsonObj));
+                updateJsonString();
             },
             onDragStart: function ($item, container, _super) {
             var offset = $item.offset();
@@ -108,7 +109,9 @@ var FreestreamParallax = function() {
             onDrag: function ($item, position, _super, event) {
                 $item.css({
                     left: position.left - adjustment.left,
-                    top: position.top - adjustment.top
+                    top: position.top - adjustment.top,
+                    height: 'inherit',
+                    width:  'inherit'
                 })
             }
 
@@ -163,6 +166,89 @@ var FreestreamParallax = function() {
         }
 
         return json;
+    }
+
+    function updateJsonString() {
+        jsonObj = [];
+        $("#parallax-pages").children('li').each(function (index, element) {
+            if ($(element).find('>.page-heading').text().trim()) {
+
+                parent = getJsonElement(element, true);
+
+                $(element).find('ol').children('li').each(function (subIndex, subElement) {
+                    subTmp = {}
+
+                    if ($(subElement).find('>.page-heading').text().trim()) {
+                        child = getJsonElement(subElement);
+                        parent["children"].push(child);
+                    }
+                });
+
+                jsonObj.push(parent);
+            }
+        });
+
+        $('#Form-field-Parallaxes-pages').val(JSON.stringify(jsonObj));
+    }
+
+    /**
+     * Event listener for when a new page is added from the widget.
+     *
+     * @param  {JSON} event
+     */
+    document.addEventListener("freestream.parallax.backend.newPageSelected", function(event) {
+        var element = event.detail.element;
+        var tracker = event.detail.tracker;
+        var button_text = event.detail.button_text;
+
+        addPageAtTracker(element, tracker, button_text);
+        updateJsonString();
+    });
+
+    /**
+     * Adds a new page to closest ol from tracker element.
+     *
+     * @param {element} element
+     * @param {string} tracker
+     * @param {string} button_text
+     */
+    function addPageAtTracker(element, tracker, button_text)
+    {
+        trackerElement = $('#' + tracker);
+        parentElement = trackerElement.prev('ol');
+
+        level = (parentElement.attr('id') == 'parallax-pages') ? 1 : 2;
+
+        element.addClass('pages-level-' + level);
+
+        if (level === 1) {
+            var uid = getUniqId();
+
+            trackerElement.clone()
+                .attr("id", uid)
+                .attr('data-request-data', 'button_id: ' + '\'' + uid + '\'')
+                .html(button_text)
+                .appendTo(element);
+        }
+
+        parentElement.append(element);
+    }
+
+    /**
+     * Generates a new unique element id.
+     *
+     * @return {string}
+     */
+    function getUniqId()
+    {
+        var id = "parallax-uniqid-" + counter++;
+
+        if ($("#"+id).length == 0) {
+            return id;
+        }
+        else {
+            return getUniqId()
+        }
     }
 
     that.init();

@@ -19,7 +19,7 @@ class Plugin extends PluginBase
     {
         return [
             'name'        => 'Parallax',
-            'description' => Lang::get('freestream.parallax::lang.system.details.description'),
+            'description' => 'freestream.parallax::lang.system.details.description',
             'author'      => 'Freestream',
             'icon'        => 'icon-th-large'
         ];
@@ -46,7 +46,7 @@ class Plugin extends PluginBase
     {
         return [
             'freestream.parallax.manage_parallaxes' => [
-                'label' => Lang::get('freestream.parallax::lang.system.permissions.manage_parallaxes'),
+                'label' => 'freestream.parallax::lang.system.permissions.manage_parallaxes',
                 'tab'   => 'Parallax'
             ]
         ];

@@ -20,18 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-tabs:
-    fields:
-        title:
-            tab: freestream.parallax::lang.controllers.parallax.general
-            span: left
-            label: freestream.parallax::lang.controllers.parallax.title
+fields:
+    title:
+        span: left
+        label: freestream.parallax::lang.controllers.parallax.title
 
-        pages:
-            tab: freestream.parallax::lang.controllers.parallax.pages
-            cssClass: hidden
+    pages:
+        cssClass: hidden
 
-        selector:
-            tab: freestream.parallax::lang.controllers.parallax.pages
-            type: partial
-            path: page_selector
+    selector:
+        type: partial
+        path: page_selector
