@@ -109,14 +109,14 @@ class Parallaxes extends Controller
     }
 
     /**
-     *
+     * Creates popup partial on AJAX event.
      *
      * @return string
      */
     public function onOpenAvailablePages()
     {
         if (!post('button_id')) {
-            throw new SystemException('Expected to get a button id for tracking');
+            throw new SystemException('Expected to get a button tracking ID.');
         }
 
         $this->vars['button_id'] = post('button_id');

@@ -23,40 +23,39 @@
  * THE SOFTWARE.
  */
 ?>
+<?= $this->makeHintPartial('freestream_parallax_howto_hint', 'hint') ?>
 <div class="col-sm-12 parallax">
-    <div class="form-preview">
-        <ol id="parallax-pages" class="page_selector">
-            <?php foreach ($this->getSelectedPagesInHierarchy() as $parent): ?>
-                <li class="pages-level-1" data-pagename="<?php echo $parent['pagename']; ?>">
-                    <div class="controls">
-                        <i class="fa fa-times"></i>
-                    </div>
-                    <span class="page-heading">
-                        <?php echo $parent['title']; ?>
-                    </span>
-                    <ol>
-                        <?php foreach ($parent['children'] as $child): ?>
-                            <li class="pages-level-2" data-pagename="<?php echo $child['pagename']; ?>">
-                                <div class="controls">
-                                    <i class="fa fa-times remove"></i>
-                                </div>
-                                <span class="page-heading">
-                                    <?php echo $child['title']; ?>
-                                </span>
-                            </li>
-                        <?php endforeach; ?>
-                    </ol>
-                    <?php $buttonId = uniqid() ?>
-                    <div class="btn btn-primary oc-icon-plus" id="<?php echo $buttonId ?>" data-control="popup" data-handler="onOpenAvailablePages" data-request-data="button_id: '<?php echo $buttonId ?>'">
-                        <?= e(trans('freestream.parallax::lang.controllers.parallax.horizontal_label')) ?>
-                    </div>
-                </li>
-            <?php endforeach; ?>
-        </ol>
-        <?php $buttonId = uniqid() ?>
-        <div class="btn btn-primary oc-icon-plus" id="<?php echo $buttonId ?>" data-control="popup" data-handler="onOpenAvailablePages" data-request-data="button_id: '<?php echo $buttonId ?>'">
-            <?= e(trans('freestream.parallax::lang.controllers.parallax.vertical_label')) ?>
-        </div>
+    <ol id="parallax-pages" class="page_selector">
+        <?php foreach ($this->getSelectedPagesInHierarchy() as $parent): ?>
+            <li class="pages-level-1" data-pagename="<?php echo $parent['pagename']; ?>">
+                <div class="controls">
+                    <i class="fa fa-times" onclick="$(this).parent().parent().remove()"></i>
+                </div>
+                <span class="page-heading">
+                    <?php echo $parent['title']; ?>
+                </span>
+                <ol>
+                    <?php foreach ($parent['children'] as $child): ?>
+                        <li class="pages-level-2" data-pagename="<?php echo $child['pagename']; ?>">
+                            <div class="controls">
+                                <i class="fa fa-times" onclick="$(this).parent().parent().remove()"></i>
+                            </div>
+                            <span class="page-heading">
+                                <?php echo $child['title']; ?>
+                            </span>
+                        </li>
+                    <?php endforeach; ?>
+                </ol>
+                <?php $buttonId = uniqid() ?>
+                <div class="btn btn-primary oc-icon-plus" id="<?php echo $buttonId ?>" data-control="popup" data-handler="onOpenAvailablePages" data-request-data="button_id: '<?php echo $buttonId ?>'">
+                    <?= e(trans('freestream.parallax::lang.controllers.parallax.horizontal_label')) ?>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+    <?php $buttonId = uniqid() ?>
+    <div class="btn btn-primary oc-icon-plus" id="<?php echo $buttonId ?>" data-control="popup" data-handler="onOpenAvailablePages" data-request-data="button_id: '<?php echo $buttonId ?>'">
+        <?= e(trans('freestream.parallax::lang.controllers.parallax.vertical_label')) ?>
     </div>
 </div>
 <script type="text/javascript">

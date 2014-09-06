@@ -41,7 +41,7 @@
                 <?php foreach ($pages as $name => $title): ?>
                     <li data-pagename="<?= $name ?>">
                         <div class="controls">
-                            <i class="fa fa-times remove"></i>
+                            <i class="fa fa-times" onclick="$(this).parent().parent().remove()"></i>
                         </div>
                         <span class="page-heading">
                             <?= $title ?>

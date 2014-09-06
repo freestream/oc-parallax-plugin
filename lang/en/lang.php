@@ -45,7 +45,7 @@ return [
             'new_parallax'          => 'New Parallax',
             'created'               => 'Created',
             'updated'               => 'Updated',
-            'how_to'                => 'Drag and drop the pages you have available in your current theme into right field.<br />The first level will generate a vertical parallax and all pages in the second level will result in a horizontal parallax.',
+            'how_to'                => 'Add vertical pages from the currently active them to create an continuous vertical scrolling page.<br />All pages in the second level will automatically be handled as a sidescroll.<br /><strong>Place note that it is limited to only 2 levels and it requires at lest one vertical page to create a horizontal scroll.</strong>',
             'available_pages'       => 'Available Pages',
             'selected_pages'        => 'Selected Pages',
             'return_to_parallaxes'  => 'Return to parallaxes list',

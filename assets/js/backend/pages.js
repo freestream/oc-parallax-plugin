@@ -39,11 +39,6 @@ var FreestreamParallax = function(options) {
      */
     that.init = function() {
         that.initiateSortable();
-
-        $('ol#parallax-pages div.controls i.fa.fa-times').on( "click", function() {
-            $(this).parent().parent().remove();
-            updateJsonString();
-        });
     };
 
     /**
@@ -199,9 +194,8 @@ var FreestreamParallax = function(options) {
     document.addEventListener("freestream.parallax.backend.newPageSelected", function(event) {
         var element = event.detail.element;
         var tracker = event.detail.tracker;
-        var button_text = event.detail.button_text;
 
-        addPageAtTracker(element, tracker, button_text);
+        addPageAtTracker(element, tracker);
         updateJsonString();
     });
 
@@ -210,9 +204,8 @@ var FreestreamParallax = function(options) {
      *
      * @param {element} element
      * @param {string} tracker
-     * @param {string} button_text
      */
-    function addPageAtTracker(element, tracker, button_text)
+    function addPageAtTracker(element, tracker)
     {
         trackerElement = $('#' + tracker);
         parentElement = trackerElement.prev('ol');
@@ -227,7 +220,7 @@ var FreestreamParallax = function(options) {
             trackerElement.clone()
                 .attr("id", uid)
                 .attr('data-request-data', 'button_id: ' + '\'' + uid + '\'')
-                .html(button_text)
+                .html(opt.horizontal_button_text)
                 .appendTo(element);
         }
 

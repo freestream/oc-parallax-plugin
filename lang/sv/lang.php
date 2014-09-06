@@ -45,7 +45,7 @@ return [
             'new_parallax'          => 'Ny parallax',
             'created'               => 'Skapad',
             'updated'               => 'Uppdaterad',
-            'how_to'                => 'Dra och släpp bland de sidor du har tillgängliga i ditt aktiva tema till det högra fältet.<br \>Den första nivån kommer att generera en vertikal parallax och alla sidor i den andra nivån skapar en horisontell parallax.',
+            'how_to'                => 'Lägg till vertikala sidor genom att välj bland de existerande sidorna i det aktiva temat för att skapa en kontinuerlig vertikalt rullande sida.<br />Alla horisontella sidor kommer att automatiskt bli behandlade som en horisontellt rullande sida.<br /><strong>Notera att det endast går att skapa två nivåer av sidor samt att det krävs minst en vertikal sida för att skapa en horisontellt rullande sida.</strong>',
             'available_pages'       => 'Tillgängliga sidor',
             'selected_pages'        => 'Valda sidor',
             'return_to_parallaxes'  => 'Återvänd till parallax listan',
