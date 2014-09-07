@@ -28,23 +28,20 @@
     <ol id="parallax-pages" class="page_selector">
         <?php foreach ($this->getSelectedPagesInHierarchy() as $parent): ?>
             <li class="pages-level-1" data-pagename="<?php echo $parent['pagename']; ?>">
-                <div class="controls">
-                    <i class="fa fa-times" onclick="$(this).parent().parent().remove()"></i>
-                </div>
+                <button type="button" class="close" data-dismiss="callout" aria-hidden="true">×</button>
                 <span class="page-heading">
                     <?php echo $parent['title']; ?>
                 </span>
                 <ol>
                     <?php foreach ($parent['children'] as $child): ?>
                         <li class="pages-level-2" data-pagename="<?php echo $child['pagename']; ?>">
-                            <div class="controls">
-                                <i class="fa fa-times" onclick="$(this).parent().parent().remove()"></i>
-                            </div>
+                            <button type="button" class="close" data-dismiss="callout" aria-hidden="true">×</button>
                             <span class="page-heading">
                                 <?php echo $child['title']; ?>
                             </span>
-                        <?php $buttonId = uniqid() ?>
-                        <div class="btn btn-primary oc-icon-plus" id="<?php echo $buttonId ?>" data-control="popup" data-handler="onOpenAvailablePages" data-request-data="button_id: '<?php echo $buttonId ?>'"></div>
+                            <ol></ol>
+                            <?php $buttonId = uniqid() ?>
+                            <div class="btn btn-primary oc-icon-plus" id="<?php echo $buttonId ?>" data-control="popup" data-handler="onOpenAvailablePages" data-request-data="button_id: '<?php echo $buttonId ?>'"></div>
                         </li>
                     <?php endforeach; ?>
                 </ol>
@@ -61,6 +58,10 @@
     </div>
 </div>
 <script type="text/javascript">
+        // $('form').request('onSave', {
+        //     beforeUpdate: function(){ console.log("BEFORE!") }
+        // })
+
     var freestreamParallax = new FreestreamParallax({
         horizontal_button_text: "<?= e(trans('freestream.parallax::lang.controllers.parallax.horizontal_label')) ?>",
         vertical_button_text: "<?= e(trans('freestream.parallax::lang.controllers.parallax.vertical_label')) ?>",

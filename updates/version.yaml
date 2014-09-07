@@ -20,3 +20,5 @@
     - Implements a brand new page selector to make it responsive friendly.
 1.0.7:
     - Code cleanup
+1.0.8:
+    - Markup and JavaScript cleanup

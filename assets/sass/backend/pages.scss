@@ -62,7 +62,7 @@ body.dragging, body.dragging * {
             opacity: 0.5;
             z-index: 2000;
 
-            div.controls, div.btn {
+            button.close, div.btn {
                 display: none;
             }
         }
@@ -103,23 +103,34 @@ div.parallax {
     ol#parallax-pages {
         border: 1px solid #ddd;
 
-        div.controls {
-            display: inline;
-
-            i.fa.fa-times {
-                right: 0;
-                position: absolute;
-                margin-right: 45px;
-                line-height: 20px;
-                cursor: pointer;
-            }
-        }
-
         li {
             margin-bottom: 5px;
 
             &:last-child {
                 margin-bottom: 0px;
+            }
+
+            &.fade.in {
+                opacity: 1;
+                filter: alpha(opacity=100);
+                -webkit-transform: scale(1);
+                -ms-transform: scale(1);
+                transform: scale(1);
+            }
+
+            &.fade {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transition: all 0.5s, width 0s;
+                transition: all 0.5s, width 0s;
+                -webkit-transform: scale(0.9);
+                -ms-transform: scale(0.9);
+                transform: scale(0.9);
+            }
+
+            button.close {
+                color: #fff;
+                text-shadow: none;
             }
 
             .btn {
@@ -134,10 +145,6 @@ div.parallax {
 
         li.pages-level-2 {
             @include page-slide-level2;
-
-            div.controls i.fa.fa-times {
-                margin-right: 60px
-            }
 
             div.btn {
                 display: none;
@@ -178,7 +185,7 @@ div.parallax-available {
                 color: white;
             }
 
-            div.controls, div.btn {
+            button.close, div.btn {
                 display: none;
             }
         }

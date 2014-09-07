@@ -82,6 +82,7 @@ class Parallaxes extends Controller
          * Customization overrides.
          */
         $this->addCss('/plugins/freestream/parallax/assets/css/backend/pages.css');
+        $this->addCss('/plugins/freestream/parallax/assets/css/backend/pages.css.map');
         $this->addJs('/plugins/freestream/parallax/assets/js/backend/pages.js');
     }
 

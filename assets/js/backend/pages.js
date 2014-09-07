@@ -40,8 +40,11 @@ var FreestreamParallax = function(options) {
     that.init = function() {
         that.initiateSortable();
 
-        $('ol#parallax-pages div.controls i.fa.fa-times').on( "click", function() {
-            $(this).parent().parent().remove();
+        $('form').on('oc.beforeRequest', function(){
+            updateJsonString();
+        });
+
+        $(document).on('click.oc.callout.data-api', function(){
             updateJsonString();
         });
     };
@@ -54,6 +57,7 @@ var FreestreamParallax = function(options) {
             group: 'page_selector',
             nested: true,
             vertical: true,
+            containerSelector: '#parallax-pages, .pages-level-1 > ol',
             onDrop: function  (item, targetContainer, _super) {
                 var clonedItem = $('<li/>').css({height: 0});
 
@@ -64,13 +68,6 @@ var FreestreamParallax = function(options) {
 
                 item.animate(clonedItem.position(), function  () {
                     clonedItem.detach();
-
-                    if (item.parents('ol').length > 1) {
-                        item.find('ol').remove();
-                    } else {
-                        item.find('.btn').before('<ol></ol>');
-                    }
-
                     _super(item)
                 });
 
@@ -80,12 +77,8 @@ var FreestreamParallax = function(options) {
                 if (targetContainer.el.get(0) !== $('#parallax-pages').get(0)) {
                     item.find("li").detach().appendTo(item.parent());
                 } else {
-                    item.find('.btn')
-                        .html(opt.horizontal_button_text)
-                        .appendTo(item);
+                    item.find('.btn').html(opt.horizontal_button_text);
                 }
-
-                updateJsonString();
             },
             onDragStart: function ($item, container, _super) {
                 var offset = $item.offset(),
@@ -111,8 +104,8 @@ var FreestreamParallax = function(options) {
                     compensate: $item.find('.btn').is(':visible')
                 }
 
-                $item.addClass("dragged")
-                $("body").addClass("dragging")
+                $item.addClass("dragged");
+                $("body").addClass("dragging");
             },
             onDrag: function ($item, position, _super, event) {
                 if (adjustment.compensate) {
@@ -126,7 +119,6 @@ var FreestreamParallax = function(options) {
                     'min-width':  adjustment.width,
                 })
             }
-
         });
     };
 
@@ -180,6 +172,9 @@ var FreestreamParallax = function(options) {
         return json;
     }
 
+    /**
+     * Updates hidden value element with JSON.
+     */
     function updateJsonString() {
         jsonObj = [];
         $("#parallax-pages").children('li').each(function (index, element) {
@@ -211,10 +206,8 @@ var FreestreamParallax = function(options) {
     document.addEventListener("freestream.parallax.backend.newPageSelected", function(event) {
         var element = event.detail.element;
         var tracker = event.detail.tracker;
-        var button_text = event.detail.button_text;
 
-        addPageAtTracker(element, tracker, button_text);
-        updateJsonString();
+        addPageAtTracker(element, tracker);
     });
 
     /**
@@ -222,9 +215,8 @@ var FreestreamParallax = function(options) {
      *
      * @param {element} element
      * @param {string} tracker
-     * @param {string} button_text
      */
-    function addPageAtTracker(element, tracker, button_text)
+    function addPageAtTracker(element, tracker)
     {
         trackerElement = $('#' + tracker);
         parentElement = trackerElement.prev('ol');
@@ -234,9 +226,7 @@ var FreestreamParallax = function(options) {
         element.addClass('pages-level-' + level);
 
         if (level === 1) {
-            element.find('.btn')
-                .html(button_text)
-                .appendTo(element);
+            element.find('.btn').html(opt.horizontal_button_text);
         }
 
         parentElement.append(element);
