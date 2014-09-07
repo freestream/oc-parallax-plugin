@@ -18,7 +18,7 @@
     padding: 10px 20px 10px 0px;
 
     > .page-heading {
-        @include page-heading
+        @include page-heading;
     }
 }
 
@@ -53,13 +53,18 @@
     list-style-type: none;
 }
 
-
 body.dragging, body.dragging * {
     cursor: move !important;
 
     ol#parallax-pages {
-        li.pages-level-1 {
-            padding-bottom: 50px;
+        li.dragged {
+            position: absolute;
+            opacity: 0.5;
+            z-index: 2000;
+
+            div.controls, div.btn {
+                display: none;
+            }
         }
     }
 }
@@ -79,6 +84,10 @@ div.parallax {
 
     ol {
         @include resetOl;
+    }
+
+    .placeholder {
+        position: relative;
     }
 
     .placeholder:before {
@@ -129,6 +138,10 @@ div.parallax {
             div.controls i.fa.fa-times {
                 margin-right: 60px
             }
+
+            div.btn {
+                display: none;
+            }
         }
     }
 
@@ -165,7 +178,7 @@ div.parallax-available {
                 color: white;
             }
 
-            div.controls {
+            div.controls, div.btn {
                 display: none;
             }
         }

@@ -18,3 +18,5 @@
     - Added language support and a swedish translation of the plugin.
 1.0.6:
     - Implements a brand new page selector to make it responsive friendly.
+1.0.7:
+    - Code cleanup

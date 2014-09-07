@@ -43,6 +43,8 @@
                             <span class="page-heading">
                                 <?php echo $child['title']; ?>
                             </span>
+                        <?php $buttonId = uniqid() ?>
+                        <div class="btn btn-primary oc-icon-plus" id="<?php echo $buttonId ?>" data-control="popup" data-handler="onOpenAvailablePages" data-request-data="button_id: '<?php echo $buttonId ?>'"></div>
                         </li>
                     <?php endforeach; ?>
                 </ol>

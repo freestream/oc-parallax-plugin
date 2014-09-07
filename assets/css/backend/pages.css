@@ -1550,8 +1550,12 @@
 
 body.dragging, body.dragging * {
   cursor: move !important; }
-  body.dragging ol#parallax-pages li.pages-level-1, body.dragging * ol#parallax-pages li.pages-level-1 {
-    padding-bottom: 50px; }
+  body.dragging ol#parallax-pages li.dragged, body.dragging * ol#parallax-pages li.dragged {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 2000; }
+    body.dragging ol#parallax-pages li.dragged div.controls, body.dragging ol#parallax-pages li.dragged div.btn, body.dragging * ol#parallax-pages li.dragged div.controls, body.dragging * ol#parallax-pages li.dragged div.btn {
+      display: none; }
 
 div.add-page {
   background-color: #2b3e50;
@@ -1573,6 +1577,8 @@ div.parallax {
     padding: 0px;
     margin: 0px;
     list-style-type: none; }
+  div.parallax .placeholder {
+    position: relative; }
   div.parallax .placeholder:before {
     font-family: FontAwesome;
     font-style: normal;
@@ -1625,6 +1631,8 @@ div.parallax {
         display: none; }
       div.parallax ol#parallax-pages li.pages-level-2 div.controls i.fa.fa-times {
         margin-right: 60px; }
+      div.parallax ol#parallax-pages li.pages-level-2 div.btn {
+        display: none; }
   div.parallax .btn {
     margin-top: 10px; }
 
@@ -1648,7 +1656,7 @@ div.parallax-available ol#available-pages {
     div.parallax-available ol#available-pages li:hover {
       background: #4da7e8 !important;
       color: white; }
-    div.parallax-available ol#available-pages li div.controls {
+    div.parallax-available ol#available-pages li div.controls, div.parallax-available ol#available-pages li div.btn {
       display: none; }
   div.parallax-available ol#available-pages li:nth-child(even) {
     background-color: #f5f5f5; }
