@@ -22,3 +22,5 @@
     - Code cleanup
 1.0.8:
     - Markup and JavaScript cleanup
+1.0.9:
+    - Bugfix of anchors. Replaces slashes with dash.
