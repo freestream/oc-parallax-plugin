@@ -24,3 +24,5 @@
     - Markup and JavaScript cleanup
 1.0.9:
     - Bugfix of anchors. Replaces slashes with dash.
+1.0.10:
+    - Removed debug row.

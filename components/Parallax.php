@@ -319,8 +319,6 @@ class Parallax extends ComponentBase
             $pages[] = str_replace('/', '-', $page['pagename']);
         }
 
-        \dahbug::dump($pages, NULL, 10);
-
         return $pages;
     }
 
