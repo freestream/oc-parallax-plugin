@@ -35,43 +35,43 @@ return [
     ],
     'controllers' => [
         'parallax' => [
-            'parallaxes'            => 'Parallaxes',
-            'title'                 => 'Title',
-            'pages'                 => 'Pages',
-            'create'                => 'Create Parallax',
-            'edit'                  => 'Edit Parallax',
-            'general'               => 'General',
-            'deleted_success'       => 'Parallax(es) has been deleted successfully.',
-            'new_parallax'          => 'New Parallax',
-            'created'               => 'Created',
-            'updated'               => 'Updated',
-            'how_to'                => 'Add vertical pages from the currently active them to create an continuous vertical scrolling page.<br />All pages in the second level will automatically be handled as a sidescroll.<br /><strong>Place note that it is limited to only 2 levels and it requires at lest one vertical page to create a horizontal scroll.</strong>',
-            'available_pages'       => 'Available Pages',
-            'selected_pages'        => 'Selected Pages',
-            'return_to_parallaxes'  => 'Return to parallaxes list',
-            'manage_parallaxes'     => 'Manage Parallaxes',
-            'available_title'       => 'Available Pages',
-            'available_description' => 'Click on the page you want to include.',
-            'horizontal_label'      => 'Add horizontal page',
-            'vertical_label'        => 'Add vertical page'
+            'parallaxes'                    => 'Parallaxes',
+            'title'                         => 'Title',
+            'pages'                         => 'Pages',
+            'create'                        => 'Create Parallax',
+            'edit'                          => 'Edit Parallax',
+            'general'                       => 'General',
+            'deleted_success'               => 'Parallax(es) has been deleted successfully.',
+            'new_parallax'                  => 'New Parallax',
+            'created'                       => 'Created',
+            'updated'                       => 'Updated',
+            'how_to'                        => 'Add vertical pages from the currently active them to create an continuous vertical scrolling page.<br />All pages in the second level will automatically be handled as a sidescroll.<br /><strong>Place note that it is limited to only 2 levels and it requires at lest one vertical page to create a horizontal scroll.</strong>',
+            'available_pages'               => 'Available Pages',
+            'selected_pages'                => 'Selected Pages',
+            'return_to_parallaxes'          => 'Return to parallaxes list',
+            'manage_parallaxes'             => 'Manage Parallaxes',
+            'available_title'               => 'Available Pages',
+            'available_description'         => 'Click on the page you want to include.',
+            'horizontal_label'              => 'Add horizontal page',
+            'vertical_label'                => 'Add vertical page'
         ]
     ],
     'components' => [
-        'parallax_page'             => 'Parallax Page',
-        'description'               => 'Generates a parallax of selected pages.',
-        'properties'                => [
-            'groups'                    => [
-                'general'                   => 'General',
-                'looping'                   => 'Looping',
-                'navigation'                => 'Navigation',
-                'slides_navigation'         => 'Slides Navigation',
-                'advanced'                  => 'Advanced',
+        'parallax_page'                     => 'Parallax Page',
+        'description'                       => 'Generates a parallax of selected pages.',
+        'properties'                        => [
+            'groups'                            => [
+                'general'                           => 'General',
+                'looping'                           => 'Looping',
+                'navigation'                        => 'Navigation',
+                'slides_navigation'                 => 'Slides Navigation',
+                'advanced'                          => 'Advanced',
             ],
-            'options'                   => [
-                'right'                     => 'Right',
-                'left'                      => 'Left',
-                'bottom'                    => 'Bottom',
-                'top'                       => 'Top',
+            'options'                           => [
+                'right'                             => 'Right',
+                'left'                              => 'Left',
+                'bottom'                            => 'Bottom',
+                'top'                               => 'Top',
             ],
             'parallax'                          => [
                 'title'                             => 'Parallax',
@@ -104,7 +104,7 @@ return [
             ],
             'css3'                              => [
                 'title'                             => 'CSS3',
-                'description'                       => 'Defines wheter to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3. If this option is set to true and the browser doesn\'t support CSS3, a jQuery fallback will be used instead.',
+                'description'                       => 'Defines whether to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3. If this option is set to true and the browser doesn\'t support CSS3, a jQuery fallback will be used instead.',
             ],
             'loopBottom'                        => [
                 'title'                             => 'Loop Bottom',
@@ -137,16 +137,16 @@ return [
             'paddingTop'                        => [
                 'title'                             => 'Padding Top',
                 'description'                       => 'Defines the top padding for each section with a numerical value and its measure. Useful in case of using a fixed header.',
-                'validationMessage'                 => 'Must be number with a tailing size option (em, px or %)',
+                'validationMessage'                 => 'Must be number with a tailing size option (em, px, rem or %)',
             ],
             'paddingBottom'                     => [
                 'title'                             => 'Padding Bottom',
                 'description'                       => 'Defines the bottom padding for each section with a numerical value and its measure. Useful in case of using a fixed footer.',
-                'validationMessage'                 => 'Must be number with a tailing size option (em, px or %)',
+                'validationMessage'                 => 'Must be number with a tailing size option (em, px, rem or %)',
             ],
             'fixedElements'                     => [
                 'title'                             => 'Fixed Elements',
-                'description'                       => 'Defines which elements will be taken off the scrolling structure of the plugin which is necesary when using the css3 option to keep them fixed. It requires a string with the jQuery selectors for those elements.',
+                'description'                       => 'Defines which elements will be taken off the scrolling structure of the plugin which is necessary when using the CSS3 option to keep them fixed. It requires a string with the jQuery selectors for those elements.',
             ],
             'normalScrollElements'              => [
                 'title'                             => 'Normal Scroll Elements',
@@ -154,7 +154,7 @@ return [
             ],
             'normalScrollElementTouchThreshold' => [
                 'title'                             => 'Normal Scroll Element Touch Threshold',
-                'description'                       => 'Defines the threshold for the number of hops up the html node tree Fullpage will test to see if "Normal Scroll Elements" is a match to allow scrolling functionality on divs on a touch device.',
+                'description'                       => 'Defines the threshold for the number of hops up the HTML node tree Fullpage will test to see if "Normal Scroll Elements" is a match to allow scrolling functionality on divs on a touch device.',
                 'validationMessage'                 => 'Invalid "Normal Scroll Element Touch Threshold" format.',
             ],
             'keyboardScrolling'                 => [

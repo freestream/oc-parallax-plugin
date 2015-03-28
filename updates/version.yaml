@@ -26,3 +26,8 @@
     - Bugfix of anchors. Replaces slashes with dash.
 1.0.10:
     - Removed debug row.
+1.0.11:
+    - October RC compatibility verification.
+    - Does no longer require JavaScripts to be loaded on the header instead of the footer as it is default.
+    - Updated Swedish translation.
+    - Updated English translation.

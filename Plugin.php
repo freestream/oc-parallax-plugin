@@ -64,14 +64,7 @@ class Plugin extends PluginBase
                 'label'         => 'Parallax',
                 'url'           => Backend::url('freestream/parallax/parallaxes'),
                 'icon'          => 'icon-th-large',
-                'permissions'   => ['freestream.parallax.*'],
-                'sideMenu'      => [
-                    'parallax'      => [
-                        'label'         => 'Parallax',
-                        'icon'          => 'icon-th-large',
-                        'url'           => Backend::url('freestream/parallax/parallaxes'),
-                    ],
-                ]
+                'permissions'   => ['freestream.parallax.*']
             ]
         ];
     }
