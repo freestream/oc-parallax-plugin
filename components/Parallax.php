@@ -283,7 +283,7 @@ class Parallax extends ComponentBase
         $this->page['pages'] = $this->_getPageCollection();
 
         foreach ($this->getProperties() as $key => $value) {
-            $this->page[$key] = $value;
+            $this->page[$key] = ($value == 'yes') ? 1 : ($value == 'no') ? 0 : $value;
         }
 
         $this->page['navigationTooltips']   = json_encode($this->getNavigationTooltips());

@@ -31,3 +31,5 @@
     - Does no longer require JavaScripts to be loaded on the header instead of the footer as it is default.
     - Updated Swedish translation.
     - Updated English translation.
+1.0.12:
+    - Bugfix for yes/no attribute rendering in frontend.
